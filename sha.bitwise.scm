@@ -1,6 +1,7 @@
 (module (sha bitwise)
 	(arithmetic-shift
 	 bitwise-and
+	 bitwise-ior
 	 bitwise-xor)
 
 (import scheme)
@@ -29,6 +30,14 @@
       0
       (+ (bit-and (first-bit a) (first-bit b))
 	 (* 2 (bitwise-and (shift-right a) (shift-right b))))))
+
+(define (bitwise-ior a b)
+  (define (bit-ior b1 b2)
+    (if (or (= b1 1) (= b2 1)) 1 0))
+  (if (and (= a 0) (= b 0))
+      0
+      (+ (bit-ior (first-bit a) (first-bit b))
+	 (* 2 (bitwise-ior (shift-right a) (shift-right b))))))
 
 (define (bitwise-xor a b)
   (define (bit-xor b1 b2)
