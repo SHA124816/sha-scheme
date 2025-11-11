@@ -86,6 +86,6 @@
 (define (two-power-leq n)
   (if (< n 1)
       (error "Argument less than one" n)
-      (iter-while (x) (* 2 x) 1 (< x n))))
+      (iter-while (x) (* 2 x) 1 (<= x n))))
 
 )
